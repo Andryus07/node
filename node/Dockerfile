@@ -2,7 +2,13 @@ FROM node:15 as base
 
 WORKDIR /usr/src/node
 
-RUN apt-get update && apt-get install -y wget && npm install --quiet
+COPY package.json .
+
+RUN apt-get update && apt-get install -y wget
+
+RUN npm install --quiet
+
+COPY . .
 
 ENV DOCKERIZE_VERSION v0.6.1
 
